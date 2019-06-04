@@ -6,6 +6,12 @@ public struct CellID
 {
     public int ver;
     public int hor;
+   
+    public CellID(int v1, int v2) : this()
+    {
+        ver = v1;
+        hor = v2;
+    }
 }
 
 /// <summary>
@@ -21,18 +27,54 @@ public class Relations : MonoBehaviour
 
     public void FindAdjacents()
     {
+        // We know that we want to have 5 (odd) lines of adjacency.
+        int lines = 5;
+        int currentLineIndex = 0;
+        int midRowIndex = (lines - 1) / 2;
 
+        for(int i = m_Id.hor - 2; i <= m_Id.hor + 2; i++)
+        {
+            if(currentLineIndex <= midRowIndex)
+            {
+
+                for (int j = 0; j <= currentLineIndex; j++)
+                {
+                    int converted = 0;
+                    if(j%2 == 0)
+                    {
+                        converted = j / 2;
+                    }
+                    else
+                    {
+                        converted = -1 * ((j / 2) + 1);
+                    }
+                    CellID oneCell = new CellID(i, m_Id.ver + converted);
+                }
+            }
+            else
+            {
+                // After the middle row
+                for (int j = currentLineIndex; j >= lines - 1; j--)
+                {
+                    int converted = 0;
+                    if (j % 2 == 0)
+                    {
+                        converted = j / 2;
+                    }
+                    else
+                    {
+                        converted = -1 * ((j / 2) + 1);
+                    }
+                    CellID oneCell = new CellID(i, m_Id.ver + converted);
+                }
+            }
+
+            currentLineIndex++;
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public List<CellID> GetAdjacents()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return m_AdjacentNodeIds;
     }
 }
