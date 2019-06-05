@@ -38,6 +38,17 @@ public class BoardManager : MonoBehaviour {
             }
             oneLine.transform.position = m_StartingPosition;
 
+            int nodeIndex = 0;
+            // Get all children nodes and assign ids
+            foreach(Transform child in oneLine.transform)
+            {
+                child.gameObject.GetComponent<Relations>().Initializations();
+                CellID thisNodeId = new CellID(i, nodeIndex);
+                child.gameObject.GetComponent<Relations>().m_Id = thisNodeId;
+                nodeIndex++;
+                child.gameObject.name = "Node_" + thisNodeId.hor + "_" + thisNodeId.ver;
+            }
+
         }
 	}
 	

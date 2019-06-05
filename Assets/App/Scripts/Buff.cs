@@ -1,0 +1,7 @@
+﻿public enum Buff
+{
+    HP_RECOVER,
+    HP_MAX_INCREASE,
+    PHYS_ATK_INCREASE,
+    PHYS_DEF_INCREASE
+}
