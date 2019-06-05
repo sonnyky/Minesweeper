@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct CellID
 {
-    public int ver;
     public int hor;
+    public int ver;
    
     public CellID(int v1, int v2) : this()
     {
-        ver = v1;
-        hor = v2;
+        hor = v1;
+        ver = v2;
     }
 }
 
@@ -24,6 +25,11 @@ public class Relations : MonoBehaviour
     private List<CellID> m_AdjacentNodeIds;
 
     public CellID m_Id { get; set; }
+
+    public void Initializations()
+    {
+        m_AdjacentNodeIds = new List<CellID>();
+    }
 
     public void FindAdjacents()
     {
@@ -49,12 +55,16 @@ public class Relations : MonoBehaviour
                         converted = -1 * ((j / 2) + 1);
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
+
+                    if (oneCell.Equals(m_Id)) continue;
+
+                    m_AdjacentNodeIds.Add(oneCell);
                 }
             }
             else
             {
                 // After the middle row
-                for (int j = currentLineIndex; j >= lines - 1; j--)
+                for (int j = lines - 1 - currentLineIndex; j >= 0; j--)
                 {
                     int converted = 0;
                     if (j % 2 == 0)
@@ -66,6 +76,7 @@ public class Relations : MonoBehaviour
                         converted = -1 * ((j / 2) + 1);
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
+                    m_AdjacentNodeIds.Add(oneCell);
                 }
             }
 
