@@ -14,10 +14,10 @@ public class LevelCreator : MonoBehaviour
         m_BaseManager = GetComponent<BaseManager>();
     }
 
-    public void DecideNodeCharacteristics(Relations nodeRelations)
+    public void DecideNodeCharacteristics(Node node)
     {
-        // Get adjacent nodes
-        List<CellID> adjacents = nodeRelations.GetAdjacents();
+      
+
     }
 
 }
