@@ -90,6 +90,8 @@ GameObject:
   - component: {fileID: 4883923754010116}
   - component: {fileID: 212061070230256916}
   - component: {fileID: 1273404776482567580}
+  - component: {fileID: 7119062772297579482}
+  - component: {fileID: 8512433225848552968}
   m_Layer: 0
   m_Name: UnknownCell
   m_TagString: Cell
@@ -170,5 +172,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c584646f091a254c8cf1456b7032521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &7119062772297579482
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628598124617158}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.31}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.24}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.26, y: 2.05}
+  m_EdgeRadius: 0
+--- !u!114 &8512433225848552968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628598124617158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a9afdf77631214f8bf8137ec3ad217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Defines and spawns the necessary cell groups
@@ -8,8 +9,13 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
 
+    public Sprite[] m_NodeNumbers;
+
     public GameObject m_CellGroupPrefab;
+
+    // There are 11 nodes in one line.
     public int m_NumberOfLines = 0;
+    private int m_NodesInALine = 11; // Hardcode for now.
 
     Vector3 m_StartingPosition;
     float m_VerticalStep = 8f;
@@ -49,6 +55,9 @@ public class BoardManager : MonoBehaviour {
                 child.gameObject.name = "Node_" + thisNodeId.hor + "_" + thisNodeId.ver;
             }
 
+            // Randomly assign node characteristics
+
+
         }
 	}
 	
@@ -56,6 +65,16 @@ public class BoardManager : MonoBehaviour {
     public void SetCellId()
     {
 
+    }
+
+    public int GetNumberOfLines()
+    {
+        return m_NumberOfLines;
+    }
+
+    public int GetNumberOfNodesInALine()
+    {
+        return m_NodesInALine;
     }
 
 }

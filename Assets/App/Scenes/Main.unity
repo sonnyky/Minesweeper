@@ -306,6 +306,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb071518d5715d84b85427ca9317457d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NodeNumbers:
+  - {fileID: 21300000, guid: 8fb350798dfe1ca41ac667971106af3c, type: 3}
+  - {fileID: 21300000, guid: 680c766afd9396a44866d0a28598b4d5, type: 3}
+  - {fileID: 21300000, guid: e0b19cfdf65e65c4a89cf3d6b04fa9cf, type: 3}
+  - {fileID: 21300000, guid: 1419b83a22adcbc41bf56529f4311659, type: 3}
+  - {fileID: 21300000, guid: e2149f574cb3dcc478c31fa51ece696d, type: 3}
+  - {fileID: 21300000, guid: 783a30ff0e3e123498dba317752154a9, type: 3}
+  - {fileID: 21300000, guid: 828faf0607eb11c4fb02e72f0bf387f8, type: 3}
+  - {fileID: 21300000, guid: 773d59eb2eebb9d40b9c8d9ff7be9704, type: 3}
+  - {fileID: 21300000, guid: 07d0dafbbf888164bac47a11788fe8ba, type: 3}
+  - {fileID: 21300000, guid: 656103a6df3199e4993fcbec01c67995, type: 3}
+  - {fileID: 21300000, guid: 009a97d954e868b45b9ef4ee14f04fd4, type: 3}
+  - {fileID: 21300000, guid: d1bf4f7a65315934a81932a4f9f99fa5, type: 3}
   m_CellGroupPrefab: {fileID: 6118495579883160577, guid: 0f99e9a9f64a9d443b6d9ab78a9295cd,
     type: 3}
   m_NumberOfLines: 15

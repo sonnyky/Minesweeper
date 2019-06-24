@@ -46,13 +46,15 @@ public class Relations : MonoBehaviour
                 for (int j = 0; j <= currentLineIndex; j++)
                 {
                     int converted = 0;
-                    if(j%2 == 0)
+                    if(j == 0)
                     {
                         converted = j / 2;
                     }
                     else
                     {
-                        converted = -1 * ((j / 2) + 1);
+                        converted = ((j / 2) + 1);
+                        if (j % 2 == 0) converted = -j / 2;
+                        if (m_Id.hor % 2 == 0) converted *= -1;
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
 
@@ -73,7 +75,9 @@ public class Relations : MonoBehaviour
                     }
                     else
                     {
-                        converted = -1 * ((j / 2) + 1);
+                        converted = ((j / 2) + 1);
+                        if (j % 2 == 0) converted = -j / 2;
+                        if (m_Id.hor % 2 == 0) converted *= -1;
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
                     m_AdjacentNodeIds.Add(oneCell);

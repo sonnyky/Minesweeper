@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cell
   - CellGroup
+  - NodeNumber
   layers:
   - Default
   - TransparentFX

@@ -11,4 +11,10 @@ public class Node : MonoBehaviour
         int index = Random.Range(0, buffsLength);
         return (Buff)index;
     }
+
+    public void SetNodeNumber()
+    {
+
+    }
+
 }
