@@ -58,7 +58,11 @@ public class Relations : MonoBehaviour
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
 
+                    // Check that it doesn't include itself
                     if (oneCell.Equals(m_Id)) continue;
+
+                    // Ignore the negative indices
+                    if (oneCell.ver < 0 || oneCell.hor < 0) continue;
 
                     m_AdjacentNodeIds.Add(oneCell);
                 }
@@ -80,6 +84,10 @@ public class Relations : MonoBehaviour
                         if (m_Id.hor % 2 == 0) converted *= -1;
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
+
+                    // Ignore the negative indices
+                    if (oneCell.ver < 0 || oneCell.hor < 0) continue;
+
                     m_AdjacentNodeIds.Add(oneCell);
                 }
             }

@@ -17,7 +17,6 @@ public class LevelCreator : MonoBehaviour
     public void DecideNodeCharacteristics(Node node)
     {
       
-
     }
 
 }
