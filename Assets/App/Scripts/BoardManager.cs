@@ -53,7 +53,7 @@ public class BoardManager : MonoBehaviour {
             foreach(Transform child in oneLine.transform)
             {
                 Relations relation = child.gameObject.GetComponent<Relations>();
-                relation.Initializations();
+                relation.Initializations(m_NumberOfLines, m_NodesInALine);
                 CellID thisNodeId = new CellID(i, nodeIndex);
                 relation.m_Id = thisNodeId;
 

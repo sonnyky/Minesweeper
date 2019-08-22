@@ -32,9 +32,16 @@ public class Node : MonoBehaviour
         Debug.Log("for node : " + gameObject.name + " there are adjacents : " + m_AdjacentIds.Count);
         foreach(CellID id in m_AdjacentIds)
         {
-            Node adjacentNode = m_BoardManager.GetNodeWithId(id);
-            Debug.Log("Node ID : " + gameObject.name + " and adjacent node is : " + adjacentNode.gameObject.name);
-            m_AdjacentNodes.Add(adjacentNode);
+            try
+            {
+                Node adjacentNode = m_BoardManager.GetNodeWithId(id);
+                Debug.Log("Node ID : " + gameObject.name + " and adjacent node is : " + adjacentNode.gameObject.name);
+                m_AdjacentNodes.Add(adjacentNode);
+            }
+            catch
+            {
+                Debug.Log("Exception happened when checking for : " + gameObject.name + " and adjacent id : " + id.hor + ", " + id.ver);
+            }
         }
     }
 

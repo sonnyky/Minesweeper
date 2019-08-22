@@ -26,9 +26,14 @@ public class Relations : MonoBehaviour
 
     public CellID m_Id { get; set; }
 
-    public void Initializations()
+    private int m_NumOfRows = 0;
+    private int m_NumOfColumns = 0;
+
+    public void Initializations(int rows, int columns)
     {
         m_AdjacentNodeIds = new List<CellID>();
+        m_NumOfRows = rows;
+        m_NumOfColumns = columns;
     }
 
     public void FindAdjacents()
@@ -58,11 +63,7 @@ public class Relations : MonoBehaviour
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
 
-                    // Check that it doesn't include itself
-                    if (oneCell.Equals(m_Id)) continue;
-
-                    // Ignore the negative indices
-                    if (oneCell.ver < 0 || oneCell.hor < 0) continue;
+                    if (!CheckAdjacentValidity(oneCell)) continue;
 
                     m_AdjacentNodeIds.Add(oneCell);
                 }
@@ -85,8 +86,7 @@ public class Relations : MonoBehaviour
                     }
                     CellID oneCell = new CellID(i, m_Id.ver + converted);
 
-                    // Ignore the negative indices
-                    if (oneCell.ver < 0 || oneCell.hor < 0) continue;
+                    if (!CheckAdjacentValidity(oneCell)) continue;
 
                     m_AdjacentNodeIds.Add(oneCell);
                 }
@@ -94,6 +94,14 @@ public class Relations : MonoBehaviour
 
             currentLineIndex++;
         }
+    }
+
+    bool CheckAdjacentValidity(CellID cellId)
+    {
+        if (cellId.Equals(m_Id)) return false;
+        if (cellId.ver < 0 || cellId.hor < 0) return false;
+        if (cellId.ver > m_NumOfColumns - 1 || cellId.hor > m_NumOfRows - 1) return false;
+        return true;
     }
 
     public List<CellID> GetAdjacents()

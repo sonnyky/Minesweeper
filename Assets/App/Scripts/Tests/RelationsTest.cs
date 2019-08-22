@@ -13,7 +13,7 @@ public class RelationsTest : MonoBehaviour
     void Start()
     {
         relations.m_Id = target;
-        relations.Initializations();
+        relations.Initializations(15, 11);
         printAdjacentNodes(target);
     }
     
