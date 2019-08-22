@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent (typeof(Relations))]
 public class Node : MonoBehaviour
 {
-    public bool m_IsBomb;
-    public bool m_IsEmpty;
-    public bool m_IsNumber;
-    public bool m_IsSet;
+    public bool m_IsBomb = false;
+    public bool m_IsEmpty = false;
+    public bool m_IsNumber = false;
+    public bool m_IsSet = false;
 
     private List<CellID> m_AdjacentIds;
     private List<Node> m_AdjacentNodes;
@@ -29,13 +29,13 @@ public class Node : MonoBehaviour
         m_AdjacentNodes = new List<Node>();
         m_Relations = GetComponent<Relations>();
         m_AdjacentIds = m_Relations.GetAdjacents();
-        Debug.Log("for node : " + gameObject.name + " there are adjacents : " + m_AdjacentIds.Count);
+        //Debug.Log("for node : " + gameObject.name + " there are adjacents : " + m_AdjacentIds.Count);
         foreach(CellID id in m_AdjacentIds)
         {
             try
             {
                 Node adjacentNode = m_BoardManager.GetNodeWithId(id);
-                Debug.Log("Node ID : " + gameObject.name + " and adjacent node is : " + adjacentNode.gameObject.name);
+                //Debug.Log("Node ID : " + gameObject.name + " and adjacent node is : " + adjacentNode.gameObject.name);
                 m_AdjacentNodes.Add(adjacentNode);
             }
             catch
@@ -70,21 +70,22 @@ public class Node : MonoBehaviour
 
         // Set the adjacent node to empty or bomb
         foreach(Node node in unsetAdjacents) {
-
-            // If the number of unset adjacents is more than bombs to set, randomize.
+            node.m_IsSet = true;
+            // If the number of unset adjacents is more than bombs to set, randomize. Otherwise, set as bomb
             if(numOfUnsetAdjacents > numOfBombsRemainingToSet)
             {
                 int rand = Random.Range(0, 2);
                 if(rand == 0)
                 {
-                    SetEmpty();
+                    node.SetEmpty();
                 }
                 else
                 {
-                    SetBomb();
+                    node.SetBomb();
                 }
                 numOfUnsetAdjacents--;
             }
+            else { node.SetBomb(); }
         }
     }
 
@@ -121,6 +122,7 @@ public class Node : MonoBehaviour
     public void SetEmptyOrNumber()
     {
         if (m_IsSet) return;
+        m_IsSet = true;
 
         int random = Random.Range(0, 2);
         switch (random)
@@ -154,11 +156,15 @@ public class Node : MonoBehaviour
     {
         m_IsNumber = true;
 
+        Debug.Log("Setting node : " + gameObject.name + " into a number");
+
         // check how many unset adjacents are there, and their characteristics
         int unsetNode = 0;
         int numberNode = 0;
         int bombNode = 0;
-        int adjacentNodes = m_AdjacentNodes.Count; // Always 8 ?
+
+        Debug.Log("Node : " + gameObject.name + " has " + m_AdjacentNodes.Count + " adjacent nodes");
+
         List<Node> unsetAdjacents = new List<Node>();
         foreach(Node node in m_AdjacentNodes)
         {
@@ -171,9 +177,9 @@ public class Node : MonoBehaviour
             if (node.m_IsNumber) numberNode++;
         }
 
-        if(unsetNode + numberNode + bombNode != adjacentNodes)
+        if(unsetNode + numberNode + bombNode != m_AdjacentNodes.Count)
         {
-            Debug.LogError("The node numbers don't match when setting node number.");
+            Debug.LogError("The node numbers don't match when setting node number for node : "  + gameObject.name + ". Where adjacent count = " + m_AdjacentNodes.Count + " while total of unset nodes are = " + (unsetNode + numberNode + bombNode));
         }
 
         int maxNumberCanBeSetTo = bombNode + unsetNode;

@@ -105,7 +105,7 @@ public class BoardManager : MonoBehaviour {
 
     public Node GetNodeWithId(CellID nodeId)
     {
-        Debug.Log("[GetNodeWithId] nodeId : " + nodeId.hor + ", " + nodeId.ver + ". m_AllNodes.Count : " + m_AllNodes.Count + ". index: " + ((m_NodesInALine * nodeId.hor) + nodeId.ver));
+        //Debug.Log("[GetNodeWithId] nodeId : " + nodeId.hor + ", " + nodeId.ver + ". m_AllNodes.Count : " + m_AllNodes.Count + ". index: " + ((m_NodesInALine * nodeId.hor) + nodeId.ver));
         return m_AllNodes[(m_NodesInALine * nodeId.hor) + nodeId.ver];
     }
 
