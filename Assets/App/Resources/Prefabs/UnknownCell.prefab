@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4096587766083680}
   - component: {fileID: 212150711987815308}
   m_Layer: 0
-  m_Name: MINESWEEPER_3
+  m_Name: Node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,3 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a9afdf77631214f8bf8137ec3ad217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IsBomb: 0
+  m_IsEmpty: 0
+  m_IsNumber: 0
+  m_IsSet: 0
+  m_NodeNumber: -1
+  m_NumOfSurroundingBombs: -1

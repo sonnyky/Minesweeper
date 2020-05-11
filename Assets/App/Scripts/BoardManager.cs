@@ -109,4 +109,8 @@ public class BoardManager : MonoBehaviour {
         return m_AllNodes[(m_NodesInALine * nodeId.hor) + nodeId.ver];
     }
 
+    public Sprite GetSprite(int spriteCode)
+    {
+        return m_NodeNumbers[spriteCode];
+    }
 }

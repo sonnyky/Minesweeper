@@ -15,16 +15,21 @@ public class Node : MonoBehaviour
     private List<CellID> m_BombNodes; // If this cell is a number cell, it also holds information on the cells that holds a bomb.
     private List<CellID> m_NumberNodes; // If this cell is a bomb, hold information on the number cells it contributes to.
 
+    private SpriteRenderer m_NodeSpriteRenderer;
+
     public int m_NodeNumber = -1;
 
     public int m_NumOfSurroundingBombs = -1;
 
     private Relations m_Relations;
+
     private BoardManager m_BoardManager;
 
     public void Init()
     {
         m_BoardManager = FindObjectOfType<BoardManager>();
+
+        m_NodeSpriteRenderer = transform.Find("Node").gameObject.GetComponent<SpriteRenderer>();
 
         m_AdjacentNodes = new List<Node>();
         m_Relations = GetComponent<Relations>();
@@ -65,27 +70,40 @@ public class Node : MonoBehaviour
     /// </summary>
     public void SetAdjacents(List<Node> unsetAdjacents, int numOfBombsRemainingToSet)
     {
-        // These adjacents have the possibility to become a bomb
+        // These adjacents have the possibility to become a bomb, or empty. (TODO : also add the possibility of being another number)
         int numOfUnsetAdjacents = unsetAdjacents.Count;
 
         // Set the adjacent node to empty or bomb
         foreach(Node node in unsetAdjacents) {
             node.m_IsSet = true;
-            // If the number of unset adjacents is more than bombs to set, randomize. Otherwise, set as bomb
-            if(numOfUnsetAdjacents > numOfBombsRemainingToSet)
+
+            if (numOfBombsRemainingToSet > 0)
             {
-                int rand = Random.Range(0, 2);
-                if(rand == 0)
+                // If the number of unset adjacents is more than bombs to set, randomize. Otherwise, set as bomb
+                if (numOfUnsetAdjacents > numOfBombsRemainingToSet)
                 {
-                    node.SetEmpty();
+                    int rand = Random.Range(0, 2);
+                    if (rand == 0)
+                    {
+                        node.SetEmpty();
+                    }
+                    else
+                    {
+                        node.SetBomb();
+                        numOfBombsRemainingToSet--;
+                    }
                 }
                 else
                 {
                     node.SetBomb();
+                    numOfBombsRemainingToSet--;
                 }
-                numOfUnsetAdjacents--;
             }
-            else { node.SetBomb(); }
+            else
+            {
+                node.SetEmpty();
+            }
+            numOfUnsetAdjacents--;
         }
     }
 
@@ -145,11 +163,13 @@ public class Node : MonoBehaviour
     void SetEmpty()
     {
         m_IsEmpty = true;
+        m_NodeSpriteRenderer.sprite = m_BoardManager.GetSprite(0);
     }
 
     void SetBomb()
     {
         m_IsBomb = true;
+        m_NodeSpriteRenderer.sprite = m_BoardManager.GetSprite(12);
     }
 
     void SetNumber()
@@ -187,6 +207,8 @@ public class Node : MonoBehaviour
 
         int thisNodeNumber = Random.Range(minNumberCanBeSetTo, maxNumberCanBeSetTo + 1);
         m_NodeNumber = thisNodeNumber;
+        m_NodeSpriteRenderer.sprite = m_BoardManager.GetSprite(thisNodeNumber);
         SetAdjacents(unsetAdjacents, thisNodeNumber - bombNode);
     }
+
 }
