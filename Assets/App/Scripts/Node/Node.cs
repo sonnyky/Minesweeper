@@ -176,7 +176,7 @@ public class Node : MonoBehaviour
     {
         m_IsNumber = true;
 
-        Debug.Log("Setting node : " + gameObject.name + " into a number");
+        //Debug.Log("Setting node : " + gameObject.name + " into a number");
 
         // check how many unset adjacents are there, and their characteristics
         int unsetNode = 0;
@@ -184,7 +184,7 @@ public class Node : MonoBehaviour
         int bombNode = 0;
         int emptyNode = 0;
 
-        Debug.Log("Node : " + gameObject.name + " has " + m_AdjacentNodes.Count + " adjacent nodes");
+        //Debug.Log("Node : " + gameObject.name + " has " + m_AdjacentNodes.Count + " adjacent nodes");
 
         List<Node> unsetAdjacents = new List<Node>();
         foreach(Node node in m_AdjacentNodes)

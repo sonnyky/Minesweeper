@@ -19,7 +19,7 @@ public class BoardManager : MonoBehaviour {
 
     private List<Node> m_AllNodes;
 
-    Vector3 m_StartingPosition;
+    Vector3 m_StartingPosition = new Vector3(0, 20, 0);
     float m_VerticalStep = 8f;
     float m_HorizontalStep;
 
@@ -29,24 +29,20 @@ public class BoardManager : MonoBehaviour {
         m_AllNodes = new List<Node>();
 
         // Generate the line cells
-        m_StartingPosition = new Vector3(0, 0, 0);
 
 		for(int i = 0; i < m_NumberOfLines; i++)
         {
+            Vector3 instantiatePosition = m_StartingPosition;
             GameObject oneLine = Instantiate(m_CellGroupPrefab);
             oneLine.name = "CellLineGroup" + i;
-            m_StartingPosition = oneLine.transform.position;
-            
-            if(i%2 != 0)
+
+            instantiatePosition.y -= (i * 2.5f);
+            if (i%2 == 0)
             {
-                m_StartingPosition.x += 4.25f;
-                m_StartingPosition.y += 20f - (i * 2.5f);
+                instantiatePosition.x -= 4.25f;
             }
-            else
-            {
-                m_StartingPosition.y += 20f - ((i/2) * 5f);
-            }
-            oneLine.transform.position = m_StartingPosition;
+            oneLine.transform.position = instantiatePosition;
+
 
             int nodeIndex = 0;
             // Get all children nodes and assign ids
