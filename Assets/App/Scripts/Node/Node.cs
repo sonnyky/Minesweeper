@@ -182,6 +182,7 @@ public class Node : MonoBehaviour
         int unsetNode = 0;
         int numberNode = 0;
         int bombNode = 0;
+        int emptyNode = 0;
 
         Debug.Log("Node : " + gameObject.name + " has " + m_AdjacentNodes.Count + " adjacent nodes");
 
@@ -195,11 +196,12 @@ public class Node : MonoBehaviour
             }
             if (node.m_IsBomb) bombNode++;
             if (node.m_IsNumber) numberNode++;
+            if (node.m_IsEmpty) emptyNode++;
         }
 
-        if(unsetNode + numberNode + bombNode != m_AdjacentNodes.Count)
+        if(unsetNode + numberNode + bombNode + emptyNode != m_AdjacentNodes.Count)
         {
-            Debug.LogError("The node numbers don't match when setting node number for node : "  + gameObject.name + ". Where adjacent count = " + m_AdjacentNodes.Count + " while total of unset nodes are = " + (unsetNode + numberNode + bombNode));
+            Debug.LogError("The node numbers don't match when setting node number for node : "  + gameObject.name + ". Where adjacent count = " + m_AdjacentNodes.Count + " while total of unset nodes are = " + (unsetNode + numberNode + bombNode + emptyNode));
         }
 
         int maxNumberCanBeSetTo = bombNode + unsetNode;
