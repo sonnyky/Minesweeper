@@ -23,6 +23,8 @@ public class BoardManager : MonoBehaviour {
     float m_VerticalStep = 8f;
     float m_HorizontalStep;
 
+    CellID m_InitialCellID = new CellID(-1, -1);
+
 	// Use this for initialization
 	void Start () {
 
@@ -71,11 +73,18 @@ public class BoardManager : MonoBehaviour {
         }
 
         // Randomly assign node characteristics
+        StartCoroutine(runSet());
+
+    }
+
+    IEnumerator runSet()
+    {
         foreach (Node node in m_AllNodes)
         {
-            node.SetEmptyOrNumber();
-        }
+            yield return new WaitForSeconds(1f);
 
+            node.SetEmptyOrNumber(m_InitialCellID);
+        }
     }
 
 
