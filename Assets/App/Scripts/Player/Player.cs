@@ -10,4 +10,8 @@ public class Player : MonoBehaviour
     private float physAtk;
     private float physDef;
 
+    public void MoveTo(Vector3 _target)
+    {
+
+    }
 }

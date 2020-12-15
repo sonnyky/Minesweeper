@@ -16,7 +16,6 @@ public class Node : MonoBehaviour
     private List<CellID> m_AdjacentIds;
     private List<Node> m_AdjacentNodes;
     private List<CellID> m_BombNodes; // If this cell is a number cell, it also holds information on the cells that holds a bomb.
-    private List<CellID> m_NumberNodes; // If this cell is a bomb, hold information on the number cells it contributes to.
 
     private SpriteRenderer m_NodeSpriteRenderer;
 
@@ -28,8 +27,7 @@ public class Node : MonoBehaviour
 
     private BoardManager m_BoardManager;
 
-    private List<Node> m_UnsetAdjacents;
-
+    private InputManager m_InputManager;
     public void Init()
     {
         m_BoardManager = FindObjectOfType<BoardManager>();
@@ -37,7 +35,6 @@ public class Node : MonoBehaviour
         m_NodeSpriteRenderer = transform.Find("Node").gameObject.GetComponent<SpriteRenderer>();
 
         m_AdjacentNodes = new List<Node>();
-        m_UnsetAdjacents = new List<Node>();
         m_Relations = GetComponent<Relations>();
         m_AdjacentIds = m_Relations.GetAdjacents();
         //Debug.Log("for node : " + gameObject.name + " there are adjacents : " + m_AdjacentIds.Count);
@@ -186,6 +183,15 @@ public class Node : MonoBehaviour
                 node.SetEmpty(_cellId);
             }
         }
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log(GetNodeId());
+    }
+    public Vector3 GetNodePosition()
+    {
+        return gameObject.transform.Find("Node").position;
     }
 
     public bool GetNodeSetStatus()

@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cell
-  - CellGroup
   - NodeNumber
+  - Node
+  - NodeGroup
   layers:
   - Default
   - TransparentFX

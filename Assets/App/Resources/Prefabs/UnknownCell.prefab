@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 212150711987815308}
   m_Layer: 0
   m_Name: Node
-  m_TagString: Untagged
+  m_TagString: NodeNumber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 1273404776482567580}
   - component: {fileID: 7119062772297579482}
   - component: {fileID: 8512433225848552968}
+  - component: {fileID: 204080473779142605}
   m_Layer: 0
   m_Name: UnknownCell
-  m_TagString: Cell
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,5 +221,33 @@ MonoBehaviour:
   m_IsEmpty: 0
   m_IsNumber: 0
   m_IsSet: 0
+  m_Reserved: 0
+  m_ToSetAsNumber: 0
   m_NodeNumber: -1
   m_NumOfSurroundingBombs: -1
+--- !u!61 &204080473779142605
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628598124617158}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2.49}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.24}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.94, y: 2.41}
+  m_EdgeRadius: 0.28
