@@ -118,7 +118,7 @@ public class Node : MonoBehaviour
                         {
                             foreach (Node bombNode in m_AdjacentNodes)
                             {
-                                if (!bombNode.m_IsSet)
+                                if (!bombNode.m_IsSet && numOfBombsRemainingToSet > 0)
                                 {
                                     numOfUnsetAdjacents--;
                                     bombNode.SetBomb(_cellId);
